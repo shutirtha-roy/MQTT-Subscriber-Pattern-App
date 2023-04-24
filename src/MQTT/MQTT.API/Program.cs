@@ -1,14 +1,15 @@
+using MQTT.API.Settings;
 using MQTT.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder
+    .AddSerilog()
+    .AddApi()
+    .AddSwagger();
 
-builder.Services.AddApplication();
+builder.Services
+    .AddApplication();
 
 var app = builder.Build();
 
