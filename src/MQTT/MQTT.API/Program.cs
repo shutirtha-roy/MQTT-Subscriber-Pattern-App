@@ -5,6 +5,7 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 builder
+    .AddAutofac()
     .AddSerilog()
     .AddApi()
     .AddSwagger();
@@ -35,11 +36,6 @@ try
 }
 catch (Exception e)
 {
-    if (e.GetType().Name.Equals("HostAbortedException", StringComparison.Ordinal))
-    {
-        throw;
-    }
-
     Log.Fatal(e, "Application Staring-up Failed.");
 }
 finally
