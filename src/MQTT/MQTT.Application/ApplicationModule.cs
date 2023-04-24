@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MQTT.Application.Services;
 
 namespace MQTT.Application;
 
@@ -13,6 +14,10 @@ public class ApplicationModule : Module
 
     protected override void Load(ContainerBuilder builder)
     {
+        builder.RegisterType<MQTTConnectionService>()
+            .As<IMQTTConnectionService>()
+            .InstancePerLifetimeScope();
+
         base.Load(builder);
     }
 }
