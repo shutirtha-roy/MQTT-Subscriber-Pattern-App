@@ -21,4 +21,14 @@ public sealed class SubscriberList : ISubscriberList
 
 		_subscriberItems[topic].Add(client);
     }
+
+	public async Task RemoveSubscriber(string topic, IMqttClient client)
+	{
+        if (!_subscriberItems.ContainsKey(topic))
+        {
+			throw new KeyNotFoundException("Subscriber Not found");	
+        }
+
+        _subscriberItems[topic].Remove(client);
+    }
 }
