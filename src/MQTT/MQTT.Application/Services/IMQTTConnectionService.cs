@@ -4,5 +4,5 @@ namespace MQTT.Application.Services;
 
 public interface IMQTTConnectionService
 {
-    Task<(IMqttClient?, MqttClientConnectResult?)> IsConnected();
+    Task<IMqttClient> IsConnected();
 }

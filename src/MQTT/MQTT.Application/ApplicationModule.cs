@@ -37,6 +37,10 @@ public class ApplicationModule : Module
         builder.RegisterType<APIResponse>()
             .AsSelf();
 
+        builder.RegisterType<PublisherService>()
+            .As<IPublisherService>()
+            .InstancePerLifetimeScope();
+
         base.Load(builder);
     }
 }

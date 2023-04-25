@@ -5,7 +5,7 @@ namespace MQTT.Application.Services;
 
 public sealed class MQTTConnectionService : IMQTTConnectionService
 {
-    public async Task<(IMqttClient?, MqttClientConnectResult?)> IsConnected()
+    public async Task<IMqttClient?> IsConnected()
     {
         var mqttClient = new MqttFactory()
             .CreateMqttClient();
@@ -18,12 +18,12 @@ public sealed class MQTTConnectionService : IMQTTConnectionService
         try
         {
             var response = await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-            return (mqttClient, response);
+            return mqttClient;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            return (null, null);
+            return null;
         }
     }
 }
