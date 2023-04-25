@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using MQTT.Application.Data;
 using MQTT.Application.Services;
 
 namespace MQTT.Application;
@@ -17,6 +18,14 @@ public class ApplicationModule : Module
         builder.RegisterType<MQTTConnectionService>()
             .As<IMQTTConnectionService>()
             .InstancePerLifetimeScope();
+
+        builder.RegisterType<PublisherList>()
+            .As<IPublisherList>()
+            .SingleInstance();
+
+        builder.RegisterType<SubscriberList>()
+            .As<ISubscriberList>()
+            .SingleInstance();
 
         base.Load(builder);
     }
