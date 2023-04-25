@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MQTT.Application.Data;
+using MQTT.Application.DTOs;
 using MQTT.Application.Services;
 
 namespace MQTT.Application;
@@ -26,6 +27,15 @@ public class ApplicationModule : Module
         builder.RegisterType<SubscriberList>()
             .As<ISubscriberList>()
             .SingleInstance();
+
+        builder.RegisterType<PublisherDto>()
+            .AsSelf();
+
+        builder.RegisterType<SubscriberDto>()
+            .AsSelf();
+
+        builder.RegisterType<APIResponse>()
+            .AsSelf();
 
         base.Load(builder);
     }
